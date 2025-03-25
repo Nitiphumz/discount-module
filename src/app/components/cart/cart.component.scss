@@ -1,0 +1,105 @@
+h1 {
+  font-size: 64px;
+  padding: 25px;
+  text-align: center;
+  background: linear-gradient(45deg, #4f78ff, #163b81); /* Gradient สีเขียวเข้มและเขียวอ่อน */
+  background-size: 200% 200%; /* ขยาย gradient ให้สามารถเคลื่อนที่ได้ */
+  -webkit-background-clip: text; /* ใช้ gradient กับข้อความ */
+  color: transparent; /* ทำให้ข้อความโปร่งใส */
+  transition: background-position 1s ease; /* แอนิเมชั่นที่เปลี่ยนจากซ้ายไปขวา */
+}
+
+/* เมื่อ hover ที่ข้อความจะเปลี่ยนสี gradient จากซ้ายไปขวา */
+h1:hover {
+  background-position: right center; /* เปลี่ยนทิศทางของ gradient เมื่อ hover */
+}
+
+h4 {
+  font-weight: bold;
+}
+
+.cart-container {
+  display: flex;
+  justify-content: center; /* จัดทั้งสองฝั่งให้อยู่กลาง */
+  align-items: flex-start; /* ให้เริ่มจากด้านบน */
+  gap: 20px;
+  height: 100vh; /* ความสูงเต็มหน้าจอ */
+}
+
+.cart-items {
+  flex: 0 0 60%; /* ให้พื้นที่สินค้าครอบคลุม 60% ของความกว้าง */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 คอลัมน์ */
+  gap: 15px; /* ลดระยะห่างระหว่างสินค้า */
+  overflow-y: auto;
+  height: 100%; /* ให้พื้นที่สินค้าฝั่งซ้ายเต็มความสูง */
+}
+
+.cart-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 350px; /* เพิ่มความสูงของกล่องสินค้า */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* จัดให้เนื้อหาภายในกล่องกระจายอย่างสวยงาม */
+}
+
+.cart-item img {
+  width: 100%; /* ขยายขนาดภาพให้เต็มความกว้างของกล่อง */
+  height: 250px; /* เพิ่มความสูงของรูปภาพ */
+  object-fit: cover; /* ทำให้ภาพครอบคลุมพื้นที่ของกล่องโดยไม่เสียสัดส่วน */
+  margin-bottom: 10px; /* เพิ่มระยะห่างระหว่างรูปภาพกับเนื้อหา */
+}
+
+.cart-item h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.cart-item p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.right-panel {
+  flex: 0 0 35%; /* ขนาดฝั่งขวาให้เป็น 35% */
+  background-color: #d6eaff; /* สีพื้นหลังสำหรับตระกร้า */
+  padding: 30px;
+  padding-top: 50px; /* เพิ่มพื้นที่ด้านบน */
+  padding-bottom: 50px; /* เพิ่มพื้นที่ด้านล่าง */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 100%; /* ความสูงเต็มหน้าจอ */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.right-panel h2, .right-panel h3 {
+  text-align: center;
+}
+
+button {
+  background-color: #2d6ffc;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #242188;
+}
+
+.campaigns button {
+  width: 100%;
+  margin-top: 10px;
+}
+

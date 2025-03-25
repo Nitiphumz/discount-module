@@ -1,0 +1,82 @@
+<div>
+  <h1> Cart </h1>
+
+  <div class="cart-container">
+    <div class="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <img [src]="item.imageUrl" alt="{{ item.name }}" />
+        <h3>{{ item.name }}</h3>
+        <p>Price: {{ item.price }} THB</p>
+
+        <button mat-raised-button color="primary" (click)="addToCart(item)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="right-panel" *ngIf="cart.length > 0">
+      <h2>Items in cart:</h2>
+      <div *ngIf="cart.length > 0">
+        <div *ngFor="let item of cart">
+          <div>
+            <p>
+              {{ item.quantity }} {{ item.name }} {{ getItemTotalPrice(item) }} THB
+              <button (click)="changeQuantity(item, 'add')"> +
+              </button>
+              <button (click)="changeQuantity(item, 'remove')" [disabled]="item.quantity <= 1"> -
+              </button>
+              <button (click)="removeItem(item)"> Delete
+              </button>
+            </p>
+          </div>
+        </div>
+
+        <div *ngIf="isLoading">
+          <p>Loading...</p>
+        </div>
+
+        <div *ngFor="let discountDetail of discountDetails">
+          <h4>{{ discountDetail }}</h4>
+        </div>
+
+        <h4>Total Price: {{ calculateDiscountedPrice() }} THB</h4>
+      </div>
+
+      <br>
+
+      <h4>Select a Campaign:</h4>
+      <div *ngFor="let campaign of campaigns" class="campaigns">
+        <label>
+          <mat-checkbox type="checkbox" [checked]="campaign.selected" (change)="selectCampaign(campaign.id)">
+            {{ campaign.name }}
+          </mat-checkbox>
+
+          <div *ngIf="campaign.selected">
+            <div *ngIf="campaign.amount !== undefined">
+              <label>Discount Amount: {{ campaign.amount }} THB</label>
+            </div>
+            <div *ngIf="campaign.percentage !== undefined">
+              <label>Discount Percentage: {{ campaign.percentage }}%</label>
+            </div>
+            <div *ngIf="campaign.category && campaign.name === 'Percentage Discount by Item Category'">
+              <label>Select Category:
+                <select [(ngModel)]="campaign.selectedCategory"
+                  (ngModelChange)="onCategoryChange(campaign.selectedCategory || '')">
+                  <option *ngFor="let category of getCategories()" [value]="category">{{ category }}</option>
+                </select>
+              </label>
+            </div>
+            <div *ngIf="campaign.points !== undefined">
+              <label>Points: <input type="number" [(ngModel)]="campaign.points" /></label>
+            </div>
+            <div *ngIf="campaign.name === 'Special Seasonal Discount'">
+              <label>Every X THB: <input type="number" [(ngModel)]="campaign.everyX" /></label>
+              <br>
+              <label>Discount Y THB: <input type="number" [(ngModel)]="campaign.discountY" /></label>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
